@@ -9,7 +9,11 @@ declare REL="${REL:-edge}"
 declare MIRROR="${MIRROR:-http://nl.alpinelinux.org/alpine}"
 declare TIMEZONE="${TIMEZONE:-UTC}"
 
+declare ARCH="$(uname -m)"
+if [ "$ARCH" = 'armv7l' ]; then ARCH='armhf'; fi
+
 set -eo pipefail; [[ "$TRACE" ]] && set -x
+
 
 [[ "$(id -u)" -eq 0 ]] || {
 	printf >&2 '%s requires root\n' "$0" && exit 1
@@ -29,8 +33,7 @@ output_redirect() {
 
 get-apk-version() {
 	declare release="$1" mirror="${2:-$MIRROR}"
-	local arch="$(uname -m)"
-	curl -sSL "${mirror}/${release}/main/${arch}/APKINDEX.tar.gz" \
+	curl -sSL "${mirror}/${release}/main/${ARCH}/APKINDEX.tar.gz" \
 		| tar -Oxz \
 		| grep '^P:apk-tools-static$' -a -A1 \
 		| tail -n1 \
@@ -40,7 +43,6 @@ get-apk-version() {
 build(){
 	declare mirror="$1" rel="$2" timezone="${3:-UTC}"
 	local repo="$mirror/$rel/main"
-	local arch="$(uname -m)"
 
 	# tmp
 	local tmp="$(mktemp -d "${TMPDIR:-/var/tmp}/alpine-docker-XXXXXXXXXX")"
@@ -48,7 +50,7 @@ build(){
 	# trap "rm -rf $tmp $rootfs" EXIT TERM INT
 
 	# get apk
-	curl -sSL "${repo}/${arch}/apk-tools-static-$(get-apk-version "$rel").apk" \
+	curl -sSL "${repo}/${ARCH}/apk-tools-static-$(get-apk-version "$rel").apk" \
 		| tar -xz -C "$tmp" sbin/apk.static \
 		| output_redirect
 
