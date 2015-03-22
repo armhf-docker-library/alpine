@@ -12,3 +12,4 @@ docker tag mazzolino/armhf-alpine:3.1 mazzolino/armhf-alpine:latest
 docker push mazzolino/armhf-alpine
 
 docker tag -f mazzolino/armhf-alpine:3.1 alpine:3.1
+docker tag -f mazzolino/armhf-alpine:latest alpine:latest
