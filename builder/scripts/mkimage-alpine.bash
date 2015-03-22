@@ -8,7 +8,11 @@
 declare REL="${REL:-edge}"
 declare MIRROR="${MIRROR:-http://nl.alpinelinux.org/alpine}"
 
+declare ARCH="$(uname -m)"
+if [ "$ARCH" = 'armv7l' ]; then ARCH='armhf'; fi
+
 set -eo pipefail; [[ "$TRACE" ]] && set -x
+
 
 [[ "$(id -u)" -eq 0 ]] || {
 	printf >&2 '%s requires root\n' "$0" && exit 1
