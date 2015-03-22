@@ -1,8 +1,16 @@
 # docker-alpine (armhf)
 
-_This is a port of the [Alpine Linux image](https://registry.hub.docker.com/_/alpine/) for running on armhf (ARMv7+) devices. Only version 3.1 is supported at the moment.
+This is a port of the [Alpine Linux image](https://registry.hub.docker.com/_/alpine/) for running on armhf (ARMv7+) devices. Only version 3.1 is supported at the moment.
 
-See the [build script](https://github.com/djmaze/docker-alpine/blob/armhf/build-arm.sh) on how it is built._
+Run the following commands in order to let other images transparently use this as a base image on your armhf device:
+
+	docker pull mazzolino/armhf-alpine:3.1
+	docker tag -f mazzolino/armhf-alpine:3.1 alpine:3.1
+	docker tag -f mazzolino/armhf-alpine:latest alpine:latest
+
+See the [build script](https://github.com/djmaze/docker-alpine/blob/armhf/build-arm.sh) on how it is built.
+
+## Original description
 
 [![CircleCI](https://img.shields.io/circleci/project/gliderlabs/docker-alpine/release.svg)](https://circleci.com/gh/gliderlabs/docker-alpine) [![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://registry.hub.docker.com/u/gliderlabs/alpine/) [![IRC Channel](https://img.shields.io/badge/irc-%23gliderlabs-blue.svg)][irc]
 
