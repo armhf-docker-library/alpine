@@ -1,0 +1,3 @@
+image: mazzolino/armhf-dind-with-git
+script:
+  - wrapdocker ./build-arm.sh
