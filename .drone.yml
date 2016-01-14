@@ -22,7 +22,43 @@ publish:
     password: $$DOCKER_PASSWORD
     repo: armhfbuild/alpine
     tag: "$$VERSION"
+    force_tag: true
     storage_driver: overlay
+    when:
+      matrix:
+        VERSION: 3.1
+
+  docker:
+    image: armhfplugins/drone-docker:docker-caching
+    file: versions/library-$$VERSION/Dockerfile
+    context: versions/library-$$VERSION
+    username: $$DOCKER_USER
+    email: $$DOCKER_EMAIL
+    password: $$DOCKER_PASSWORD
+    repo: armhfbuild/alpine
+    tag: "$$VERSION"
+    force_tag: true
+    storage_driver: overlay
+    when:
+      matrix:
+        VERSION: 3.2
+
+  docker:
+    image: armhfplugins/drone-docker:docker-caching
+    file: versions/library-$$VERSION/Dockerfile
+    context: versions/library-$$VERSION
+    username: $$DOCKER_USER
+    email: $$DOCKER_EMAIL
+    password: $$DOCKER_PASSWORD
+    repo: armhfbuild/alpine
+    tag:
+      - "$$VERSION"
+      - latest
+    force_tag: true
+    storage_driver: overlay
+    when:
+      matrix:
+        VERSION: 3.3
 
 cache:
   mount:
