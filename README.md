@@ -1,5 +1,7 @@
 # docker-alpine (armhf)
 
+[![Build Status](https://armdrone.strahlungsfrei.de/api/badges/armhf-docker-library/alpine/status.svg)](https://armdrone.strahlungsfrei.de/armhf-docker-library/alpine)
+
 This is a port of the [Alpine Linux image](https://registry.hub.docker.com/_/alpine/) for running on armhf (ARMv7+) devices. Only version 3.1 is supported at the moment.
 
 Run the following commands in order to let other images transparently use this as a base image on your armhf device:
