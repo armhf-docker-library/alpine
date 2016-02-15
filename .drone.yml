@@ -8,7 +8,11 @@ build:
   image: armhfbuild/docker:1.10-dind
   privileged: true
   commands:
+    # FIXME Replace this hack when there is a real Docker build plugin
+    - docker daemon -s aufs -g /drone/docker &
+    - sleep 2
     - docker daemon -s overlay -g /drone/docker &
+    - sleep 2
     - apk add --update bash
     - ./build versions/library-$$VERSION/options
 
