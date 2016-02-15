@@ -5,7 +5,7 @@ matrix:
     - 3.3
 
 build:
-  image: armhfbuild/docker:1.9.1-dind
+  image: armhfbuild/docker:1.10-dind
   privileged: true
   commands:
     - docker daemon -s overlay -g /drone/docker &
