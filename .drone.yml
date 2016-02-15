@@ -13,7 +13,7 @@ build:
     - ./build versions/library-$$VERSION/options
 
 publish:
-  docker:
+  docker_3.1:
     image: armhfplugins/drone-docker:docker-caching
     file: versions/library-$$VERSION/Dockerfile
     context: versions/library-$$VERSION
@@ -28,7 +28,7 @@ publish:
       matrix:
         VERSION: 3.1
 
-  docker:
+  docker_3.2:
     image: armhfplugins/drone-docker:docker-caching
     file: versions/library-$$VERSION/Dockerfile
     context: versions/library-$$VERSION
@@ -43,7 +43,7 @@ publish:
       matrix:
         VERSION: 3.2
 
-  docker:
+  docker_3.3:
     image: armhfplugins/drone-docker:docker-caching
     file: versions/library-$$VERSION/Dockerfile
     context: versions/library-$$VERSION
